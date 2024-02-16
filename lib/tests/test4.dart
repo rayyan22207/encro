@@ -31,7 +31,7 @@ class _BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
         top: false,
         bottom: true,
         child: Row(
@@ -41,21 +41,33 @@ class _BottomNav extends StatelessWidget {
               index: 0,
               lable: 'Messages',
               icon: CupertinoIcons.bubble_left_bubble_right_fill,
+              onTap: (index) {
+                print(index);
+              },
             ),
             NavBarItem(
               index: 1,
               lable: 'Notifications',
               icon: CupertinoIcons.bell_solid,
+              onTap: (index) {
+                print(index);
+              },
             ),
             NavBarItem(
               index: 2,
               lable: 'Calls',
               icon: CupertinoIcons.phone_fill,
+              onTap: (index) {
+                print(index);
+              },
             ),
             NavBarItem(
               index: 3,
               lable: 'Contacts',
               icon: CupertinoIcons.person_2_fill,
+              onTap: (index) {
+                print(index);
+              },
             ),
           ],
         ));
@@ -63,12 +75,15 @@ class _BottomNav extends StatelessWidget {
 }
 
 class NavBarItem extends StatelessWidget {
-  const NavBarItem({
-    super.key,
-    required this.index,
-    required this.lable,
-    required this.icon,
-  });
+  const NavBarItem(
+      {super.key,
+      required this.index,
+      required this.lable,
+      required this.icon,
+      required this.onTap});
+
+  final ValueChanged<int> onTap;
+
   final int index;
   final String lable;
   final IconData icon;
@@ -76,7 +91,7 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(index);
+        onTap(index);
       },
       child: SizedBox(
         height: 70,
